@@ -1,18 +1,36 @@
 "set up solarized theme
+let g:solarized_termtrans = 1
 call pathogen#infect()
-syntax enable
-set background=dark
-colorscheme solarized
+syntax on			" syntax highlight
+if has("gui_running")		" GUI color and font settings
+	if has("gui_gtk2")  
+		set guifont=Inconsolata\ 14
+	elseif has("x11")  
+		set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*  
+	else  
+		set guifont=Courier_New:h10:cDEFAULT  
+	endif  
+
+	set background=dark
+	set t_Co=256			" 256 color mode
+	set cursorline			" highlight current line
+	colorscheme solarized
+	set lines=50 columns=100 " Initial GVim window size
+else
+" terminal color settings
+	set background=dark
+	colorscheme solarized
+endif
 
 " Sets how many lines of history VIM has to remember
 set history=700
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+"filetype plugin on
+"filetype indent on
 
 " Set to auto read when a file is changed from the outside
-set autoread
+ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -61,20 +79,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Enable syntax highlighting
-syntax enable
-
-colorscheme desert
-set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -88,8 +92,8 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-set ai "Auto indent
-set si "Smart indent
+"set ai "Auto indent
+"set si "Smart indent
 set wrap "Wrap lines
 
 " Visual mode pressing * or # searches for the current selection
