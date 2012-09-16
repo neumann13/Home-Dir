@@ -195,7 +195,6 @@ zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -ap zsh/mapfile mapfile
 
-# Proper settings for various terminal types
 case "$TERM" in
         linux)
                 bindkey '\e[1~' beginning-of-line       # Home
@@ -225,10 +224,11 @@ case "$TERM" in
                 bindkey '\e[2~' overwrite-mode          # Insert
                 ;;
         xterm*)
-                bindkey "\e[1~" beginning-of-line       # Home
-                bindkey "\e[4~" end-of-line             # End
-                bindkey '\e[3~' delete-char             # Del
-                bindkey '\e[2~' overwrite-mode          # Insert
+		bindkey '^[OH' beginning-of-line       # Home
+		bindkey '^[OF' end-of-line             # End
+		bindkey '^[[3~' delete-char             # Del
+		bindkey '^[[2~' overwrite-mode          # Insert
+
                 ;;
         sun)
                 bindkey '\e[214z' beginning-of-line        # Home
@@ -238,5 +238,3 @@ case "$TERM" in
                 bindkey '\e[247z' overwrite-mode                  # Insert
                 ;;
 esac
-
-#Comment
