@@ -238,3 +238,5 @@ case "$TERM" in
                 bindkey '\e[247z' overwrite-mode                  # Insert
                 ;;
 esac
+
+#Comment
